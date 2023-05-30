@@ -1,4 +1,9 @@
-async function tNotion(databaseId, list) {
+async function toNotion(type, list) {
+    if (type === 'precise') {
+        databaseId = '7029bd8b173e4f189ef31771e407fc43'
+    } else if (type === 'broad') {
+        databaseId = '7daf62afa9fd4271ad4d60364a59ca6d'
+    }
     const headers = {
         "Authorization": "Bearer secret_AfnHl5IYviY2wdG2dqpamJaGTnnBETCtfgbKo0JDpza",
         "Content-Type": "application/json",
@@ -46,5 +51,9 @@ async function tNotion(databaseId, list) {
     return await res.json();
 }
 
-tNotion('7029bd8b173e4f189ef31771e407fc43', ['Canon', 200, 5, 'https://www.ss.com/msg/lv/electronics/photo-optics/accessories/cibjd.html', 'https://i.ss.com/gallery/6/1048/261820/52363814.th2.jpg'])
-    .then(data => console.log(data))
+// toNotion('7029bd8b173e4f189ef31771e407fc43', ['Canon', 200, 5, 'https://www.ss.com/msg/lv/electronics/photo-optics/accessories/cibjd.html', 'https://i.ss.com/gallery/6/1048/261820/52363814.th2.jpg'])
+//     .then(data => console.log(data))
+
+async function checkDuplicates(type, list)
+
+module.exports = { toNotion }

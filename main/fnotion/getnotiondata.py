@@ -4,8 +4,6 @@ from time import time
 import zipfile
 import os
 import sys
-import csv
-import json
 
 EnqueueTask = "https://www.notion.so/api/v3/enqueueTask"
 GetTasks = "https://www.notion.so/api/v3/getTasks"

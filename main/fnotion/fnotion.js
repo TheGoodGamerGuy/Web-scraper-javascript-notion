@@ -38,6 +38,18 @@ function fromNotion(arg) {
                     const keywordsAndPrices = lines.slice(1).map(line => [line[1], line[3]]);
                     resolve(keywordsAndPrices);
                 });
+            } else if (arg === 'precise' || arg === 'broad') {
+                fs.readFile('data.csv', 'utf8', (err, data) => {
+                    if (err) {
+                        console.error('Error reading the file:', err);
+                        reject(err)
+                        return
+                    }
+
+                    const lines = data.split('\n').map(line => line.split(',').map(item => item.trim()));
+                    const links = lines.slice(1).map(line => line[3]);
+                    resolve(links)
+                })
             }
         });
     });
