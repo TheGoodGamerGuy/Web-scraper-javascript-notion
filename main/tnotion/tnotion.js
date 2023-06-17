@@ -1,3 +1,5 @@
+const { fromNotion } = require('../fnotion/fnotion');
+
 async function toNotion(type, list) {
     if (type === 'precise') {
         databaseId = '7029bd8b173e4f189ef31771e407fc43'
@@ -54,6 +56,15 @@ async function toNotion(type, list) {
 // toNotion('7029bd8b173e4f189ef31771e407fc43', ['Canon', 200, 5, 'https://www.ss.com/msg/lv/electronics/photo-optics/accessories/cibjd.html', 'https://i.ss.com/gallery/6/1048/261820/52363814.th2.jpg'])
 //     .then(data => console.log(data))
 
-async function checkDuplicates(type, list)
+async function checkDuplicates(type, list) {
+    const existingLinks = await fromNotion(type)
+        // console.log(existingLinks)
+    const uniqueList = list.filter(item => {
+        const link = item[3]
+        return !existingLinks.includes(link)
+    });
 
-module.exports = { toNotion }
+    return uniqueList;
+}
+
+module.exports = { toNotion, checkDuplicates }

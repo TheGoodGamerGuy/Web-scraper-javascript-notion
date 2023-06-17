@@ -23,8 +23,32 @@ async function processListings(type) {
     return processedListings;
 }
 
-// async function calculateSum(list, type) {
-//     for ()
-// }
+function calculateSum(list) {
+    const result = [];
+    const grouped = {};
 
-module.exports = { processListings };
+    for (const item of list) {
+        const [keywords, keywordPrice, listingPrice, link, image] = item;
+        const key = `${listingPrice}-${link}-${image}`;
+
+        if (key in grouped) {
+            grouped[key][0].push(keywords);
+            grouped[key][1] += keywordPrice;
+        } else {
+            grouped[key] = [
+                [keywords], keywordPrice, listingPrice, link, image
+            ];
+        }
+    }
+
+    for (const key in grouped) {
+        const [allKeywords, keywordPriceSum, listingPrice, link, image] = grouped[key];
+        result.push([allKeywords.join('; '), keywordPriceSum, listingPrice, link, image]);
+    }
+
+    return result;
+}
+
+
+
+module.exports = { processListings, calculateSum };

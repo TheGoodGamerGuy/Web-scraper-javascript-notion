@@ -62,8 +62,22 @@ while not done:
         TimePassed = TimeNow - TimeStart
         if TimePassed > 10:
             print("error")
+            done = True
+            with open("error.txt","w") as f:
+                f.write("python error")
         else:
             continue
+
+
+
+
+
+
+
+
+
+
+
 
 
 
